@@ -1,17 +1,31 @@
 FROM centos:8
 
-RUN dnf install -y curl unzip
+ARG ANSIBLE_VERSION=2.10
+ARG ANSIBLE_TOWER_CLI_VERSION=3.3.9
+ARG VAULT_VERSION=1.5.5
+ARG CINC_WORKSTATION_VERSION=0.17
+ARG CINC_WORKSTATION_CHANNEL=unstable
+ARG CUCUMBER_VERSION=5.0.0
 
-RUN dnf install -y epel-release \
-    && dnf install -y ansible \
-    && pip3 install ansible-tower-cli
+ENV ANSIBLE_TOWER_CLI_VERSION=${ANSIBLE_TOWER_CLI_VERSION}
+ENV ANSIBLE_VERSION=${ANSIBLE_VERSION}
+ENV VAULT_VERSION=${VAULT_VERSION}
+ENV CINC_WORKSTATION_VERSION=${CINC_WORKSTATION_VERSION}
+ENV CINC_WORKSTATION_CHANNEL=${CINC_WORKSTATION_CHANNEL}
+ENV CUCUMBER_VERSION=${CUCUMBER_VERSION}
 
-RUN curl -o /tmp/vault.zip https://releases.hashicorp.com/vault/1.5.5/vault_1.5.5_linux_amd64.zip \
-    && unzip -d /usr/local/bin /tmp/vault.zip
+RUN dnf install -y curl unzip python3
 
-RUN curl -o /tmp/cinc-install.sh https://omnitruck.cinc.sh/install.sh \
-    && chmod 0700 /tmp/cinc-install.sh \
-    && /tmp/cinc-install.sh \
-    && rm -f /tmp/cinc-install.sh
+RUN python3 -m pip install ansible==${ANSIBLE_VERSION} \
+    && python3 -m pip install ansible-tower-cli==${ANSIBLE_TOWER_CLI_VERSION}
+
+RUN curl -o /tmp/vault.zip https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip \
+    && unzip -d /usr/local/bin /tmp/vault.zip \
+    && rm -f /tmp/vault.zip
+
+RUN curl -L https://omnitruck.cinc.sh/install.sh | bash -s -- -P cinc-workstation -v ${CINC_WORKSTATION_VERSION} -c ${CINC_WORKSTATION_CHANNEL}
+RUN CHEF_LICENSE="accept-no-persist" chef exec gem install cucumber --version=${CUCUMBER_VERSION}
+
+RUN dnf clean all
 
 CMD [ "/bin/bash" ]
