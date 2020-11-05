@@ -1,4 +1,4 @@
-name: dockerhub-main
+name: quay-main
 
 
 on:
