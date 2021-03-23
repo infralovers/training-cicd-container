@@ -14,7 +14,8 @@ ENV CINC_WORKSTATION_VERSION=${CINC_WORKSTATION_VERSION}
 ENV CINC_WORKSTATION_CHANNEL=${CINC_WORKSTATION_CHANNEL}
 ENV CUCUMBER_VERSION=${CUCUMBER_VERSION}
 
-RUN dnf install -y curl unzip python3
+RUN dnf install -y curl unzip python3 \
+    && python3 -m pip install -U pip
 
 RUN python3 -m pip install ansible==${ANSIBLE_VERSION} \
     && python3 -m pip install ansible-tower-cli==${ANSIBLE_TOWER_CLI_VERSION} \
