@@ -17,7 +17,8 @@ ENV CUCUMBER_VERSION=${CUCUMBER_VERSION}
 RUN dnf install -y curl unzip python3
 
 RUN python3 -m pip install ansible==${ANSIBLE_VERSION} \
-    && python3 -m pip install ansible-tower-cli==${ANSIBLE_TOWER_CLI_VERSION}
+    && python3 -m pip install ansible-tower-cli==${ANSIBLE_TOWER_CLI_VERSION} \
+    && python3 -m pip install yamllint ansible-lint
 
 RUN curl -o /tmp/vault.zip https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip \
     && unzip -d /usr/local/bin /tmp/vault.zip \
