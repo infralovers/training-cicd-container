@@ -1,4 +1,4 @@
-FROM centos:8
+FROM docker.io/centos:8
 
 ARG ANSIBLE_VERSION=2.10
 ARG ANSIBLE_TOWER_CLI_VERSION=3.3.9
@@ -27,6 +27,14 @@ RUN curl -o /tmp/vault.zip https://releases.hashicorp.com/vault/${VAULT_VERSION}
 
 RUN curl -L https://omnitruck.cinc.sh/install.sh | bash -s -- -P cinc-workstation -v ${CINC_WORKSTATION_VERSION} -c ${CINC_WORKSTATION_CHANNEL}
 RUN CHEF_LICENSE="accept-no-persist" chef exec gem install cucumber --version=${CUCUMBER_VERSION}
+
+RUN echo "[jfrog-cli]" > /etc/yum.repos.d/jfrog-cli.repo \
+    && echo "name=jfrog-cli" >> /etc/yum.repos.d/jfrog-cli.repo \
+    && echo "baseurl=https://releases.jfrog.io/artifactory/jfrog-rpms" >> /etc/yum.repos.d/jfrog-cli.repo \
+    && echo "enabled=1" >> jfrog-cli.repo \
+    && echo "gpgcheck=0" >> /etc/yum.repos.d/jfrog-cli.repo \
+    && dnf install -y jfrog-cli
+
 
 RUN dnf clean all
 
