@@ -4,6 +4,7 @@ name: quay-main
 on:
   push:
     branches: [ master ]
+    tags: [ '*' ]
 
 jobs:
   build:

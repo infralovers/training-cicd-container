@@ -4,6 +4,7 @@ name: dockerhub-main
 on:
   push:
     branches: [ master ]
+    tags: [ '*' ]
 
 jobs:
   build:
