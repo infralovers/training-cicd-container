@@ -3,7 +3,7 @@ name: dockerhub-main
 
 on:
   push:
-    branches: [ IL CD-54 ]
+    branches: [ ILCD-54 ]
 
 jobs:
   build:
