@@ -14,6 +14,12 @@ ENV CINC_WORKSTATION_VERSION=${CINC_WORKSTATION_VERSION}
 ENV CINC_WORKSTATION_CHANNEL=${CINC_WORKSTATION_CHANNEL}
 ENV CUCUMBER_VERSION=${CUCUMBER_VERSION}
 
+RUN cd /etc/yum.repos.d/
+RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+
+RUN yum -y install java
+
 RUN dnf install -y curl unzip python3 git openssh-clients \
     && python3 -m pip install -U pip
 
