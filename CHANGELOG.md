@@ -1,3 +1,12 @@
+## [0.1.2](https://github.com/infralovers/training-cicd-container/compare/v0.1.1...v0.1.2) (2022-08-08)
+
+
+### Bug Fixes
+
+* removal of package.json file ([8018db8](https://github.com/infralovers/training-cicd-container/commit/8018db8a2c61ae0dd057f969406517261afb20a6))
+
+
+
 ## [0.1.1](https://github.com/infralovers/training-cicd-container/compare/v0.1.0...v0.1.1) (2022-08-08)
 
 
