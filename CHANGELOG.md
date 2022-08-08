@@ -1,4 +1,13 @@
-# 0.1.0 (2022-08-05)
+## [0.1.1](https://github.com/infralovers/training-cicd-container/compare/v0.1.0...v0.1.1) (2022-08-08)
+
+
+### Bug Fixes
+
+* no more .json file necessary ([4cb72b6](https://github.com/infralovers/training-cicd-container/commit/4cb72b65d33276c84d3678d25281be9b6cb297a2))
+
+
+
+# [0.1.0](https://github.com/infralovers/training-cicd-container/compare/219d4d455e09eebe26559940f0bc9e8032c11788...v0.1.0) (2022-08-05)
 
 
 ### Bug Fixes
