@@ -1,3 +1,19 @@
+## 1.1.1 (2026-03-04)
+
+#### Bug Fixes
+
+* disable arm64 (50c02a9c)
+* update container definition (a4971703)
+* update workflow (210c8532)
+* Change workflow - downgrade score (3e3b1e97)
+* Change workflow (a0e6e0e0)
+* Change workflow (9601dccb)
+
+#### Chores
+
+* **ci:** commit changes from go-semantic-release (4032b359)
+
+
 ## 1.1.0 (2023-03-17)
 
 #### Feature
